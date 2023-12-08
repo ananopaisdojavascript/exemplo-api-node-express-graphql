@@ -1,0 +1,20 @@
+{
+  "name": "exemplo-api-node-express-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.8.1",
+    "nodemon": "^3.0.2",
+    "winston": "^3.11.0"
+  },
+  "type": "module"
+}
