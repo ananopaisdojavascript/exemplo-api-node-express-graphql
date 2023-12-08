@@ -1,0 +1,12 @@
+GET http://localhost:3000/account
+
+#####
+
+PUT http://localhost:3000/account
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "Carla Oliveira",
+    "balance": 700
+}

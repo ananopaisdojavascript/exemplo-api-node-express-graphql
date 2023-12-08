@@ -6,3 +6,24 @@
 2023-12-08T00:32:13.394Z [my-bank-api] info : Servidor conectado
 2023-12-08T00:32:27.048Z [my-bank-api] info : Servidor conectado
 2023-12-08T01:02:28.003Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:03:44.211Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:05:22.651Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:06:24.631Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:07:16.226Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:08:18.410Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:13:47.116Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:16:17.380Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:16:24.426Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:18:06.790Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:18:15.013Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:19:27.728Z [my-bank-api] info : Servidor conectado
+2023-12-08T01:20:15.235Z [my-bank-api] info : GET /account
+2023-12-08T01:21:46.085Z [my-bank-api] info : POST /account - {"id":1,"name":"Ana","balance":500}
+2023-12-08T01:21:53.557Z [my-bank-api] info : GET /account
+2023-12-08T01:22:57.218Z [my-bank-api] info : POST /account - {"id":2,"name":"Beto","balance":300}
+2023-12-08T01:23:01.706Z [my-bank-api] info : GET /account
+2023-12-08T01:23:39.016Z [my-bank-api] info : POST /account - {"id":3,"name":"Carla","balance":500}
+2023-12-08T01:23:49.571Z [my-bank-api] info : GET /account/:id
+2023-12-08T01:23:56.536Z [my-bank-api] info : GET /account
+2023-12-08T01:24:50.237Z [my-bank-api] info : PUT /account - {"id":3,"name":"Carla Oliveira","balance":700}
+2023-12-08T01:24:54.581Z [my-bank-api] info : GET /account
