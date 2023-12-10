@@ -1,12 +1,11 @@
-GET http://localhost:3000/account
+POST http://localhost:3000/POST url HTTP/1.1
+X-Request-Type: GraphQL
+header name: header value
 
-#####
+body content
 
-PUT http://localhost:3000/account
-Content-Type: application/json
+variables content(optional)
 
 {
-    "id": 3,
-    "name": "Carla Oliveira",
-    "balance": 700
+    "query": "{getAccounts{id name balance}}"
 }
