@@ -1,11 +1,2 @@
-POST http://localhost:3000/POST url HTTP/1.1
-X-Request-Type: GraphQL
-header name: header value
-
-body content
-
-variables content(optional)
-
-{
-    "query": "{getAccounts{id name balance}}"
-}
+GET http://localhost:3000/account HTTP/1.1
+Authorization: Basic angelo:1234

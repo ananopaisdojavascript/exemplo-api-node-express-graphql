@@ -3,10 +3,9 @@ import cors from 'cors'
 import winston from 'winston'
 import { promises as fs } from 'fs'
 import AccountRouter from './routes/account.router.js'
-import { buildSchema } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import AccountService from './services/account.service.js'
 import Schema from './schema/index.js'
+import basicAuth from "express-basic-auth"
 
 
 const { readFile, writeFile } = fs
@@ -32,51 +31,52 @@ global.logger = winston.createLogger({
     )
 })
 
-// const schema = buildSchema(`
-//     type Account {
-//         id: Int
-//         name: String
-//         balance: Float
-//     }
+function getRole(username) {
+    if (username === "admin") {
+        return "admin"
+    } else if (username === "angelo") {
+        return "role1"
+    }
+}
 
-//     input AccountInput {
-//         id: Int
-//         name: String
-//         balance: Float
-//     }
+function authorize(...allowed) {
+    const isAllowed = role => allowed.indexOf(role) > -1
 
-//     type Query {
-//         getAccounts: [Account]
-//         getAccount(id: Int): Account
-//     }
+    return (request, response, next) => {
+        if (request.auth.user) {
+            const role = getRole(request.auth.user)
 
-//     type Mutation {
-//         createAccount(account: AccountInput): Account
-//         deleteAccount(id: Int): Boolean
-//         updateAccount(account: AccountInput): Account
-//     }
-// `)
-
-// const root = {
-//     getAccounts: () => AccountService.getAccounts(),
-//     getAccount(args) {
-//         return AccountService.getAccountById(args.id)
-//     },
-//     createAccount({account}) {
-//         return AccountService.createAccount(account)
-//     },
-//     deleteAccount(args) {
-//         AccountService.deleteAccount(args.id)
-//     },
-//     updateAccount({account}) {
-//         return AccountService.updateAccount(account)
-//     }
-// }
+            if (isAllowed(role)) {
+                next()
+            } else {
+                response.status(401).send("Role not allowed!!")
+            }
+        } else {
+            response.status(403).send("User not found!!!")
+        }
+    }
+}
 
 const app = express()
 app.use(express.json())
 app.use(cors())
-app.use("/account", AccountRouter)
+// app.use(basicAuth({
+//     users: { "admin": "admin" }
+// }))
+
+app.use(basicAuth({
+    authorizer: (username, password) => {
+        const userMatch = basicAuth.safeCompare(username, "admin")
+        const passwordMatch = basicAuth.safeCompare(password, "admin")
+
+        const user2Match = basicAuth.safeCompare(username, "angelo")
+        const password2Match = basicAuth.safeCompare(password, "1234")
+
+        return userMatch && passwordMatch || user2Match && password2Match
+    }
+}))
+
+app.use("/account", authorize("admin", "role1"), AccountRouter)
 app.use("/graphql", graphqlHTTP({
     schema: Schema,
     // rootValue: root,
